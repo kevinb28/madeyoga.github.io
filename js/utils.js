@@ -1,13 +1,47 @@
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register('./service-worker.js')
+            .then((reg) => {
+                console.log('Service worker registered. scope: ', reg.scope);
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+}
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Update UI notify the user they can add to home screen
+    // btnAdd.style.display = 'block';
+});
+
+install.addEventListener('click', (e) => {
+    deferredPrompt.prompt();	
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice
+        .then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+            } else {
+            console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+        });
+});
+
+
 const __BASE_URL__      = 'https://www.mangaeden.com/api/';
 const __MANGA_LIST__    = 'list/0/?p=1&l=1';
 const __MANGA_DETAIL__  = 'https://www.mangaeden.com/api/manga/';
 
-const __BASE_IMG_URL__  = 'https://www.mangaeden.com/img/';
+const __BASE_IMG_URL__  = 'https://cdn.mangaeden.com/mangasimg/98x/';
 
 // memory
 let mangas = [];
 let current_list_length = 0;
-const list_increment = 10;
+const list_increment = 7;
 
 fetch(__BASE_URL__ + __MANGA_LIST__)
     .then((resp) => resp.json())
