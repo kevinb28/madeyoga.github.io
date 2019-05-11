@@ -2,38 +2,51 @@
 <html>
 <head>
 	<title>Manga Eden</title>
+	<link rel="manifest" href="./manifest.json">
+	<meta name="description" content="Simple Manga Reader">
+	<meta name="theme-color" content="#2F3BA2" />
+
+	<meta name="referrer" content="no-referrer"/>
+
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	
-	<link rel="stylesheet" media="(max-width:768px)" href="css/smartphone.css">
-	<link rel="stylesheet" media="(min-width:768px)" href="css/desktop.css">
-
-	<script type='text/javascript' src='js/utils.js'></script>
-	<script type='text/javascript' src='js/template.js'></script>
+	<link rel="stylesheet" media="(max-width:940px)" href="css/smartphone.css">
+	<link rel="stylesheet" media="(min-width:940px)" href="css/desktop.css">
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 </head>
 <body>
+	<!-- Top Nav -->
 	<div class="topnav" id="myTopnav">
-		<img href='mangaeden.com' class='navtitle' src='https://cdn.mangaeden.com/images/logo2.png'>
-		<a href="#home" class="naviteml">Home</a>
-		<a href="#mymanga" class="naviteml">MyManga</a>
-		<a href="#contact" class="naviteml">Contact</a>
-		<a href="#about" class="naviteml">About</a>
-		<a href="#login" class="navitemr">Login</a>
-		<a class="icon" onclick="myFunction()">
-			<i class="fa fa-bars"></i>
-		</a>
+		<!-- Top Nav Items -->
+		<div class="container">
+			<img href='mangaeden.com' class='navtitle' src='https://cdn.mangaeden.com/images/logo2.png'>
+			<a href="#home" class="naviteml">Home</a>
+			<a href="#mymanga" class="naviteml">MyManga</a>
+			<a id='install' class="naviteml">Install</a>
+			<a href="#about" class="naviteml">About</a>
+			<a href="#login" class="navitemr">Login</a>
+			<a class="icon" onclick="myFunction()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
 	</div>
 
-	<!-- body -->
-	<div id='list' class='manga-list-container'>
+	<!-- Content -->
+	<div class='container'>
+		<!-- list of manga -->
+		<div id='list' class='manga-list-container'>
 
-	</div>
+		</div>
 
-	<!-- Load More button -->
-	<div class='load-more' onclick='loadMore()'>
-		Load More
+		<!-- Load More button -->
+		<div class='load-more' onclick='loadMore()'>
+			Load More
+		</div>
 	</div>
+	
+	<script type='text/javascript' src='js/utils.js'></script>
+	<script type='text/javascript' src='js/template.js'></script>
 </body>
 </html>
