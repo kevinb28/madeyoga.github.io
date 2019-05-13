@@ -1,76 +1,57 @@
-const FILES_TO_CACHE = [
-    './index.html',
-    './offline.html',
-    './css/desktop.css',
-    './css/smartphone.css'
+const STATIC_ASSETS = [ 
+	'./',
+	'./css/desktop.css',
+	'./css/smartphone.css',
+	'./offline.html', 
 ];
-const CACHE_NAME = 'cache';
 
-self.addEventListener('install', (evt) => {
-    evt.waitUntil( 
-        caches.open(CACHE_NAME).then((cache) => { 
-            console.log('[ServiceWorker] Pre-caching offline page'); 
-            return cache.addAll(FILES_TO_CACHE);
-        })
-    );
-    self.skipWaiting();
+const STATIC_CACHE_NAME = 'manga-static';
+const DYNAMIC_CACHE_NAME = 'manga-dynamic';
+
+self.addEventListener('install', async evt => {
+	 const cache = await caches.open(STATIC_CACHE_NAME);
+	 cache.addAll(STATIC_ASSETS);
 });
 
-self.addEventListener('fetch', function(evt) {
-    if (evt.request.mode !== 'navigate') 
-    { // Not a page navigation, bail. 
-        return; 
-    } 
-    // evt.respondWith( 
-    //     fetch(evt.request) 
-    //         .catch(() => { 
-    //             return caches.open(CACHE_NAME) 
-    //                 .then((cache) => { 
-    //                     return cache.match('offline.html'); 
-    //                 }); 
-    //         }
-    //     )
-    // )
-    evt.respondWith(
-        caches.match(evt.request)
-            .then(function(response){
-                if (response){
-                    return response;
-                }
-                return fetch(evt.request).then(
-                    function(response) {
-                      // Check if we received a valid response
-                      if(!response || response.status !== 200 || response.type !== 'basic') {
-                        return response;
-                      }
-          
-                      // IMPORTANT: Clone the response. A response is a stream
-                      // and because we want the browser to consume the response
-                      // as well as the cache consuming the response, we need
-                      // to clone it so we have two streams.
-                      var responseToCache = response.clone();
-          
-                      caches.open(CACHE_NAME)
-                        .then(function(cache) {
-                          cache.put(evt.request, responseToCache);
-                        });
-          
-                      return response;
-                    }
-                );
-            })
-    )
+self.addEventListener('fetch', evt => {
+	const req = evt.request;
+	const url = new URL(req.url);
+
+	if (url.origin == location.origin) {
+		evt.respondWith(cacheFirst(req));
+	} else {
+		evt.respondWith(networkFirst(req));
+	}
 });
+
+async function cacheFirst(req) {
+	const cachedResponse = await caches.match(req);
+	return cachedResponse || fetch(req);
+}
+
+async function networkFirst(req) {
+	const cache = await caches.open(DYNAMIC_CACHE_NAME);
+	try {
+        // try go to network and fetch data 
+		const res = await fetch(req);
+		cache.put(req, res.clone());
+		return res;
+	} catch(error) {
+        // look something on cache. 
+		return await cache.match(req);
+	}
+}
 
 self.addEventListener('activate', (evt) => {
- evt.waitUntil( 
-     caches.keys().then((keyList) => { 
-         return Promise.all(keyList.map((key) => { 
-             if (key !== CACHE_NAME) { 
-                 console.log('[ServiceWorker] Removing old cache', key); 
-                 return caches.delete(key); 
-             } 
-         }));
-     })
- ); 
+	evt.waitUntil( 
+	    caches.keys().then((keyList) => { 
+	        return Promise.all(keyList.map((key) => { 
+	            if (key !== STATIC_CACHE_NAME) { 
+	                console.log('[ServiceWorker] Removing old cache', key); 
+	                return caches.delete(key); 
+	            } 
+	        }));
+	    })
+	); 
 });
+
