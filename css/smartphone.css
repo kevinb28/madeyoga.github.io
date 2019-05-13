@@ -69,4 +69,28 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-  
+
+.load-more {
+    height: 50px;
+    width : 150px;
+    border: solid skyblue;
+    background-color: white;
+    color : skyblue; 
+    font-size: 22px;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.load-more:hover {
+    height: 50px;
+    width : 150px;
+    border: solid skyblue;
+    background-color: skyblue;
+    color : white; 
+    font-size: 22px;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+}
