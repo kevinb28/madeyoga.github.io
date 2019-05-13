@@ -80,6 +80,9 @@ function addMangaTo(list_element, start_index, end_index) {
         //     .catch(error);
 
         var div_child   = document.createElement('div');
+        div_child.onclick = () => {
+            location.href = './detail.html?mangaid=' + manga.i;
+        };
         // child contains: 
         var img         = document.createElement('img');
         var title       = document.createElement('div');
