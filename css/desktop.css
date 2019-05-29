@@ -57,7 +57,7 @@
     justify-content: center;
 }
 
-.card {
+.box {
     height: 450px;
     width : 240px;
     background-color: white;
@@ -67,12 +67,12 @@
     margin: 5px;
 }
 
-.card:hover {
+.box:hover {
     background-color: whitesmoke;
     cursor: pointer;
 }
 
-.card-img {
+.box-img {
     margin: 0 auto;
     padding-top: 10px;
     object-fit: cover;
@@ -80,7 +80,7 @@
     height: 292px;
 }
 
-.card-title {
+.box-title {
     font-size: 22px;
     font-weight: bold;
     overflow: hidden;
@@ -90,7 +90,7 @@
     -webkit-box-orient: vertical;
 }
 
-.card-genre {
+.box-genre {
     font-size: 18px;
     overflow: hidden;
     width: 240px;
@@ -123,4 +123,18 @@
     text-align: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.genre-rcorners {
+    border-radius: 15px;
+    background: lightgray;
+    padding: 8px;
+    color: black;
+    width: 100%;
+    height: 24px; 
+}
+
+.genre-link {
+    padding-right: 8px;
+    padding-bottom: 8px;
 }
