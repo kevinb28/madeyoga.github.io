@@ -95,15 +95,15 @@ function addMangaTo(list_element, start_index, end_index) {
         } else {
             img.src = "https://cdn.mangaeden.com/images/no_image.svg";
         }
-        img.className += 'card-img';
+        img.className += 'box-img';
         
         title.innerHTML = manga.t;
-        title.className += 'card-title';
+        title.className += 'box-title';
 
         for (var genre of manga.c) {
             genres.innerHTML += genre + ", ";
         }
-        genres.className += 'card-genre';
+        genres.className += 'box-genre';
 
         if (manga.status == 1) {
             describe.innerHTML = "Completed; ";
@@ -119,7 +119,7 @@ function addMangaTo(list_element, start_index, end_index) {
         div_child.appendChild(genres);
         div_child.appendChild(describe);
         div_child.appendChild(lastUpdate);
-        div_child.className += 'card';
+        div_child.className += 'box';
 
         list_element.appendChild(div_child);
     }
@@ -153,14 +153,14 @@ function handleDetailResponse(parent, manga, manga_detail) {
     }
     
     describe.innerHTML += manga_detail.chapters.length + " chapters";
-    img.className += 'card-img';
-    title.className += 'card-title';
+    img.className += 'box-img';
+    title.className += 'box-title';
 
     div_child.appendChild(img);
     div_child.appendChild(title);
     div_child.appendChild(authors);
     div_child.appendChild(describe);
-    div_child.className += 'card';
+    div_child.className += 'box';
     parent.appendChild(div_child);
 }
 
