@@ -5,7 +5,7 @@ body {
 .page-container {
     display: flex;
     flex-wrap: wrap;
-    flex-flow: column-reverse;
+    flex-flow: column;
     align-content: center;
     text-align: center;
 }
