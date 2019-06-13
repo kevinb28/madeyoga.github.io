@@ -2505,9 +2505,9 @@ pre code {
 
 .jumbotron {
   border-radius: 2px;
-  background-color: white;
+  background-color: rgb(49, 49, 49);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14), 0 3px 4px 0 rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(255, 255, 255, 0.87);
   padding: 3rem 2rem;
 }
 
@@ -3629,7 +3629,7 @@ fieldset:disabled a.btn {
 
 .card {
   border-radius: 2px;
-  background-color: #ffffff;
+  background-color: rgb(49, 49, 49);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14), 0 3px 4px 0 rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   display: -ms-flexbox;
   display: flex;
@@ -3638,6 +3638,7 @@ fieldset:disabled a.btn {
   min-width: 0;
   position: relative;
   word-wrap: break-word;
+  color: white;
 }
 
 .card.border-primary {
