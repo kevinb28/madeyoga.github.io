@@ -445,6 +445,10 @@ section
 	font-size: 15px;
 	color: #FFFFFF;
 }
+.search_button:hover
+{
+	color: black;
+}
 .search_button:active
 {
 	 border-color: transparent;
@@ -590,7 +594,7 @@ section
 	right: -400px;
 	width: 400px;
 	height: 100vh;
-	background: #e4e4e4;
+	background-color: #333;
 	z-index: 101;
 }
 .menu.active
@@ -616,14 +620,9 @@ section
 }
 .page_menu_search
 {
-	display: none;
 	width: 100%;
 	margin-top: 30px;
 	margin-bottom: 30px;
-}
-.page_menu_nav
-{
-
 }
 .page_menu_search_input
 {
@@ -647,7 +646,7 @@ section
 .page_menu_item > a
 {
 	display: block;
-	color: #1b1b1b;
+	color: #FFFFFF;
 	font-weight: 700;
 	line-height: 50px;
 	height: 50px;
@@ -691,7 +690,7 @@ section
 .page_menu_selection li a
 {
 	display: block;
-	color: #1b1b1b;
+	color: #FFFFFF;
 	border-bottom: solid 1px rgba(0,0,0,0.2);
 	font-size: 14px;
 	-webkit-transition: opacity 0.3s ease;
@@ -747,7 +746,7 @@ section
 .menu_close i
 {
 	font-size: 16px;
-	color: #1b1b1b;
+	color: #FFFFFF;
 	padding: 5px;
 }
 
