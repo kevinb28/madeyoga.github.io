@@ -87,6 +87,9 @@
 	{
 		margin-right: 40px;
 	}
+	.manga-page-image {
+		width: 850px;
+	}
 }
 
 /************
@@ -198,6 +201,9 @@
 	{
 		margin-top: 21px;
 	}
+	.manga-page-image {
+		width: 750px;
+	}
 }
 
 /************
@@ -224,7 +230,9 @@
 
 @media only screen and (max-width: 768px)
 {
-	
+	.manga-page-image {
+		width: 550px;
+	}
 }
 
 /************
@@ -258,6 +266,9 @@
 	{
 		padding-left: 50px;
 		padding-right: 50px;
+	}
+	.manga-page-image {
+		width: 550px;
 	}
 }
 
@@ -378,6 +389,9 @@
 	{
 		font-size: 24px;
 	}
+	.manga-page-image {
+		width: 350px;
+	}
 }
 
 /************
@@ -400,6 +414,9 @@
 		padding-left: 30px;
 		padding-right: 30px;
 	}
+	.manga-page-image {
+		width: 250px;
+	}
 }
 
 /************
@@ -411,6 +428,9 @@
 	.avds_xl_content
 	{
 		padding: 30px;
+	}
+	.manga-page-image {
+		width: 250px;
 	}
 }
 

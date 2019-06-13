@@ -1081,15 +1081,15 @@ section
     -webkit-box-orient: vertical;
     color: lightskyblue;
 }
-
-.loadmore { 
+.top { 
+	margin-top: 50px;
 	font-size: 15px;
 	margin-bottom: 50px;
     justify-content: center;
     text-align: center;
 }
 
-.loadmore:hover {
+.top:hover {
 	font-size: 150%;
 	justify-content: center;
     text-align: center;
@@ -1366,16 +1366,17 @@ section
     flex-wrap: wrap;
     flex-flow: column;
     align-content: center;
-    text-align: center;
+	text-align: center;
 }
 
 .page {
     height: 100%;
-    margin-top: 100px;
+	margin-top: 24px;
 }
 
 .manga-page-image {
-    padding-top: 50px;
+    padding-top: 24px;
     object-fit: cover;
 	align-self: center;
+	width: 950px;
 }
