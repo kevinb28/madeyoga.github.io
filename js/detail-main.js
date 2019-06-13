@@ -18,7 +18,7 @@ function handleDetailResponse(data) {
     image.style = "object-fit: cover;";
 
     var title = document.createElement('h3')
-    title.innerHTML = data.aka[0];
+    title.innerHTML = data.title;
 
     var arthor = document.createElement('div')
     if (data.artist != data.author) {
