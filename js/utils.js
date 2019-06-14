@@ -131,7 +131,7 @@ function loadMangaElement(list_element, number) {
 
     list_element.appendChild(div_child);
 
-    setTimeout(function(){ loadMangaElement(list_element, number - 1) }, 1500);
+    setTimeout(function(){ loadMangaElement(list_element, number - 1) }, 800);
 }
 
 
