@@ -47,8 +47,8 @@
 												<div class="col">
 													<div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
 														<form action="#" class="search">
-															<input type="text" class="search_input" placeholder="Search" required="required">
-															<button class="search_button" style="background-color:transparent; border-color:transparent;"><i class="fa fa-search"></i></button>
+															<input id='search-manga' type="text" class="search_input" placeholder="Search" required="required" label='search-manga' aria-label='search-manga'>
+															<button class="search_button" style="background-color:transparent; border-color:transparent;" aria-label="search-button"><i class="fa fa-search"></i></button>
 														</form>	
 													</div>
 												</div>
@@ -82,8 +82,8 @@
 							
 				<div class="page_menu_search menu_mm">
 					<form action="#">
-						<input type="text" class="search_input" placeholder="Search" required="required">
-						<button class="search_button" style="background-color:transparent; border-color:transparent;"><i class="fa fa-search"></i></button>
+						<input id='search-manga' type="text" class="search_input" placeholder="Search" required="required" label='search-manga' aria-label='search-manga'>
+						<button class="search_button" style="background-color:transparent; border-color:transparent;" aria-label="search-button"><i class="fa fa-search"></i></button>
 					</form>	
 				</div>
 				<ul class="page_menu_nav menu_mm">
@@ -102,10 +102,10 @@
 
 		<div class="menu_social">
 			<ul>
-				<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.pinterest.com/" aria-label='pinterest'><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.instagram.com/" aria-label='instagram'><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.facebook.com/" aria-label='facebook'><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.twitter.com/" aria-label='twitter'><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 			</ul>
 		</div>
 	</div>
@@ -138,7 +138,7 @@
 		
 	</div>
 	<div class="col-md text-center"> 
-		<button class="btn btn-info loadmore"  onclick='showManga(7)'>Load More</button> 
+		<button class="btn btn-info loadmore" onclick='showManga(7)' aria-label="load-more">Load More</button> 
 	</div>
 
 
@@ -156,10 +156,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </div>
 						<div class="footer_social ml-lg-auto">
 							<ul>
-								<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.pinterest.com/" aria-label='pinterest'><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.instagram.com/" aria-label='instagram'><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.facebook.com/" aria-label='facebook'><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.twitter.com/" aria-label='twitter'><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
 					</div>
