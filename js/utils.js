@@ -92,14 +92,16 @@ function loadMangaElement(list_element, number) {
         location.href = './detail.html?mangaid=' + manga.i;
     };
     // child contains: 
-    var img         = document.createElement('img');
+    let img         = document.createElement('img');
     var title       = document.createElement('div');
     var genres      = document.createElement('div');
     var describe    = document.createElement('div');
     var lastUpdate  = document.createElement('div');
 
     if (manga.im) {
-        img.src = __BASE_IMG_URL__ + manga.im;
+        setTimeout( function(){
+        	img.src = __BASE_IMG_URL__ + manga.im;
+        }, 1000 * number);
     } else {
         img.src = "https://cdn.mangaeden.com/images/no_image.svg";
     }
@@ -131,10 +133,9 @@ function loadMangaElement(list_element, number) {
 
     list_element.appendChild(div_child);
 
-    setTimeout(function(){ loadMangaElement(list_element, number - 1) }, 800);
+    setTimeout(function(){ loadMangaElement(list_element, number - 1) }, 100);
+    // loadMangaElement(list_element, number - 1)
 }
-
-
 
 /**
  * Old method. 
