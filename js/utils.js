@@ -101,11 +101,12 @@ function loadMangaElement(list_element, number) {
     if (manga.im) {
         setTimeout( function(){
         	img.src = __BASE_IMG_URL__ + manga.im;
-        }, 1000 * number);
+        }, 250 * number);
     } else {
         img.src = "https://cdn.mangaeden.com/images/no_image.svg";
     }
     img.className += 'box-img';
+    img.alt = manga.t;
     
     title.innerHTML = manga.t;
     title.className += 'box-title';
@@ -133,7 +134,7 @@ function loadMangaElement(list_element, number) {
 
     list_element.appendChild(div_child);
 
-    setTimeout(function(){ loadMangaElement(list_element, number - 1) }, 100);
+    loadMangaElement(list_element, number - 1);
     // loadMangaElement(list_element, number - 1)
 }
 
