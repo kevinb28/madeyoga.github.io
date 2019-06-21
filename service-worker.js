@@ -1,12 +1,14 @@
 const STATIC_ASSETS = [ 
 	'./',
-	// './css/desktop.css',
-	// './css/smartphone.css',
-	// './offline.html',
+	
 	'./detail.html',
-	'./detail-main.js',
+	'./js/detail-main.js',
+
 	'./read.html',
-	'./js/read.js'
+	'./js/read.js',
+
+	'./latest-updates.html',
+	'./js/latest-updates.js'
 ];
 
 const STATIC_CACHE_NAME = 'manga-static';
