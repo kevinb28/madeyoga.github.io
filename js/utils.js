@@ -39,25 +39,28 @@ const __MANGA_DETAIL__  = 'https://www.mangaeden.com/api/manga/';
 const __BASE_IMG_URL__  = 'https://cdn.mangaeden.com/mangasimg/98x/';
 
 // memory
-let mangas = [];
-let mangaList = [];
-let current_list_length = 0;
-const list_increment = 7;
+let mangas              = [];
+let mangaList           = [];
+let tempContentList     = [];
+let searchResult        = [];
+let current_list_length = 0 ;
+const list_increment    = 7 ;
 
 fetch(__BASE_URL__ + __MANGA_LIST__)
     .then((resp) => resp.json())
     .then(handleResponse)
     .catch(error);
 
+/**
+ * 
+ * @param {*} data 
+ * handle first response.
+ * 
+ */
 function handleResponse(data) {
-    // array of manga.
     mangas = data.manga;
     mangaList = mangas;
     console.log(mangas);
-
-    // shows 10 first manga. old method
-    // addMangaTo(list_element, 0, list_increment);
-    // current_list_length = list_increment;
 
     showManga(7);
 }
@@ -84,9 +87,33 @@ function loadMangaElement(list_element, number) {
     if (mangaList.length <= 0 || number <= 0) {
         return;
     }
-
+    
+    // get manga from list
     let manga = mangaList.pop();
 
+    // get manga on card element
+    var mangaOnCard = displayOnCard(manga, number);
+
+    // push on tempContent.
+    tempContentList.push(mangaOnCard);
+
+    // show it on page in list_element.
+    list_element.appendChild(mangaOnCard);
+
+    // load next Manga on list
+    loadMangaElement(list_element, number - 1);
+}
+
+/**
+ * 
+ * @param {*} list_element | element in html page.
+ * @param {*} manga | manga object, response from manga eden api
+ * @param {*} number | number of seconds for image load delay.
+ * 
+ * display manga object in card.
+ * 
+ */
+function displayOnCard(manga, number = 7) {
     var div_child   = document.createElement('div');
     div_child.onclick = () => {
         location.href = './detail.html?mangaid=' + manga.i;
@@ -101,7 +128,7 @@ function loadMangaElement(list_element, number) {
     if (manga.im) {
         setTimeout( function(){
         	img.src = __BASE_IMG_URL__ + manga.im;
-        }, 250 * number);
+        }, 350 * number);
     } else {
         img.src = "https://cdn.mangaeden.com/images/no_image.svg";
     }
@@ -132,133 +159,73 @@ function loadMangaElement(list_element, number) {
     div_child.appendChild(lastUpdate);
     div_child.className += 'box';
 
-    list_element.appendChild(div_child);
+    // list_element.appendChild(div_child);
 
-    loadMangaElement(list_element, number - 1);
-    // loadMangaElement(list_element, number - 1)
+    return div_child;
 }
 
 /**
- * Old method. 
+ * search manga
+ * get search-key from element 'search-manga'
  */
-function loadMore() {
-    var start_index = current_list_length;
-    var end_index   = current_list_length + list_increment;
-    addMangaTo(list_element, start_index, end_index);
-    current_list_length = end_index;
-}
-/**
- * Old method.
- * 
- * @param {*} list_element html tag element. Element with id `list`.
- * @param {*} start_index start index from manga list that want to be loaded.
- * @param {*} end_index end index from manga list that want to be loaded.
- * 
- * Sometimes server error 503.
- * gonna change this & use setTimeout to load the manga.
- */
-function addMangaTo(list_element, start_index, end_index) {
-    for (var i = start_index; i < end_index; i++) {
-        // must use `let`, not `var`. to handle async method.
-        let manga = mangas[i];
-
-        // see handleDetailResponse() methods below.
-        // fetch(__MANGA_DETAIL__ + mangas[i].i + '/')
-        //     .then((resp) => resp.json())
-        //     .then(function(data){
-        //         handleDetailResponse(list_element, manga, data);
-        //     })
-        //     .catch(error);
-
-        var div_child   = document.createElement('div');
-        div_child.onclick = () => {
-            location.href = './detail.html?mangaid=' + manga.i;
-        };
-        // child contains: 
-        var img         = document.createElement('img');
-        var title       = document.createElement('div');
-        var genres      = document.createElement('div');
-        var describe    = document.createElement('div');
-        var lastUpdate  = document.createElement('div');
-
-        if (manga.im) {
-            img.src = __BASE_IMG_URL__ + manga.im;
-        } else {
-            img.src = "https://cdn.mangaeden.com/images/no_image.svg";
-        }
-        img.className += 'box-img';
-        
-        title.innerHTML = manga.t;
-        title.className += 'box-title';
-
-        for (var genre of manga.c) {
-            genres.innerHTML += genre + ", ";
-        }
-        genres.className += 'box-genre';
-
-        if (manga.status == 1) {
-            describe.innerHTML = "Completed; ";
-        } else {
-            describe.innerHTML = "Ongoing; ";
-        }
-        describe.innerHTML += manga.h + " views";
-
-        lastUpdate.innerHTML += "last update " + unixTimestampToDate(manga.ld);
-
-        div_child.appendChild(img);
-        div_child.appendChild(title);
-        div_child.appendChild(genres);
-        div_child.appendChild(describe);
-        div_child.appendChild(lastUpdate);
-        div_child.className += 'box';
-
-        list_element.appendChild(div_child);
-    }
-}
-
-
-/**
- *
- * Better UX, but violate the api cors.
- * 
- * */
-function handleDetailResponse(parent, manga, manga_detail) {
-    var div_child   = document.createElement('div');
-    // child contains
-    var img         = document.createElement('img');
-    var title       = document.createElement('div');
-    var authors     = document.createElement('div');
-    var describe    = document.createElement('div');
-
-    if (manga.im) {
-        img.src = __BASE_IMG_URL__ + manga.im;
-    }
-    title.innerHTML = manga.t;
-    if (manga_detail.author) {
-        authors.innerHTML = 'By ' + manga_detail.author;
-    }
-    if (manga_detail.status == 1) {
-        describe.innerHTML = "Completed; ";
-    } else {
-        describe.innerHTML = "Ongoing; ";
-    }
+function searchManga() {
+    clearChildElementFrom(list_element);
+    let searchKey = document.getElementById('search-manga').value;
+    console.log("search: ", searchKey);
     
-    describe.innerHTML += manga_detail.chapters.length + " chapters";
-    img.className += 'box-img';
-    title.className += 'box-title';
+    list_element = document.getElementById('list');
+    var count = 0;
+    for (var manga of mangas) {
+        if (manga.t.includes(searchKey)) {
+            count++;
+            list_element.appendChild( displayOnCard(manga, count) );
+            if (count == 10) {
+                break;
+            }
+        }
+    }
+}
 
-    div_child.appendChild(img);
-    div_child.appendChild(title);
-    div_child.appendChild(authors);
-    div_child.appendChild(describe);
-    div_child.className += 'box';
-    parent.appendChild(div_child);
+function onChangeSearch() {
+    if (document.getElementById('search-manga').value.length <= 0) {
+        var list_element = document.getElementById('list');
+        showTemporaryContent(list_element);
+    }
+    else {
+        searchManga();
+    }
+}
+
+function showTemporaryContent(list_element) {
+    // clear current search result.
+    clearChildElementFrom(list_element);
+
+    // append current content. 
+    for (var cardElement of tempContentList) {
+        list_element.append(cardElement);
+    }
+}
+
+/**
+ * 
+ * @param {*} el |
+ */
+function clearChildElementFrom(el) {
+    while (el.hasChildNodes()) {
+        el.removeChild(el.lastChild);
+    }
 }
 
 function error(e) {
     console.log(e);
 }
 
+/**
+ * 
+ * @param {*} timestamp | 
+ * 
+ * converts unix timestamp to date.
+ */
 function unixTimestampToDate(timestamp) {
     var date = new Date(timestamp * 1000);
     return date.toLocaleDateString();
