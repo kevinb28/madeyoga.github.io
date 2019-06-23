@@ -84,7 +84,13 @@ function handleDetailResponse(data) {
         var chapLink = document.createElement('a');
         
         chapLink.href = "./read.html?chapterid=" + data.chapters[i][3];
-        chapLink.innerHTML = data.chapters[i][0] + " " + data.chapters[i][2];
+         if (data.chapters[i][2]==null){
+            chapLink.innerHTML = data.chapters[i][0];
+        }
+        else{
+            chapLink.innerHTML = data.chapters[i][2];
+        }
+        //chapLink.innerHTML = data.chapters[i][0] + " " + data.chapters[i][2];
         var tdUpdateTime = document.createElement('td');
 
         tdChapNumb.innerHTML = data.chapters[i][0];
