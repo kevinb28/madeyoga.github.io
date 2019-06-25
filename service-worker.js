@@ -1,6 +1,9 @@
 const STATIC_ASSETS = [ 
-	'./',
+	'./manifest.json',
 	
+	'./',
+	'./js/utils.js',
+
 	'./detail.html',
 	'./js/detail-main.js',
 
