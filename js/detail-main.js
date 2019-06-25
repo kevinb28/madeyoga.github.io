@@ -71,20 +71,26 @@ function handleDetailResponse(data) {
     description.innerHTML = data.description;
 
     // authors
-
+    authors.innerHTML = data.artist || data.author;
     // other facts
     other = document.getElementById('other-facts');
-    other.innerHTML = "published at : "
+    other.innerHTML = "released : " + data.released;
 
     // chapters
-    for (var i = 0; i < 15; i++) {
+    for (var i = 0; i < data.chapters.length; i++) {
         var tr = document.createElement('tr');
         var tdChapNumb = document.createElement('td');
         var tdChapTitle = document.createElement('td');
         var chapLink = document.createElement('a');
         
         chapLink.href = "./read.html?chapterid=" + data.chapters[i][3];
-        chapLink.innerHTML = data.chapters[i][2];
+         if (data.chapters[i][2]==null){
+            chapLink.innerHTML = data.chapters[i][0];
+        }
+        else{
+            chapLink.innerHTML = data.chapters[i][2];
+        }
+        //chapLink.innerHTML = data.chapters[i][0] + " " + data.chapters[i][2];
         var tdUpdateTime = document.createElement('td');
 
         tdChapNumb.innerHTML = data.chapters[i][0];

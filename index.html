@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Manga Heaven</title>
+<title>Manga Eden</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="referrer" content="no-referrer"/>
 <link rel="manifest" href="./manifest.json">
-<meta name="description" content="Sublime project">
+<meta name="description" content="mangaeden project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -27,17 +28,16 @@
 				<div class="row">
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<div class="logo"><a href="#">MangaHeaven.</a></div>
+							<div class="logo"><a href="https://mangaeden.com">MangaEden.</a></div>
 							<nav class="main_nav">
 								<ul>
-									<li class="hassubs active">
+									<li class="active">
 										<a href="index.html">Home</a>
 									</li>
-									<li class="hassubs" hidden>
-										<a id="install">install</a>
+									<li>
+										<a href="#" id="install">install</a>
 									</li>
-									<li><a href="#">Latest Release</a></li>
-									<li><a href="#">Login</a></li>
+									<li><a href="latest-updates.html">Latest Release</a></li>
 								</ul>
 							</nav>
 							<div class="header_extra ml-auto">
@@ -46,8 +46,8 @@
 												<div class="col">
 													<div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
 														<form action="#" class="search">
-															<input type="text" class="search_input" placeholder="Search" required="required">
-															<button class="search_button" style="background-color:transparent; border-color:transparent;"><i class="fa fa-search"></i></button>
+															<input id='search-manga' onchange="onChangeSearch()" type="text" class="search_input" placeholder="Search" required="required" label='search-manga' aria-label='search-manga'>
+															<button onclick="searchManga()" class="search_button" style="background-color:transparent; border-color:transparent;" aria-label="search-button"><i class="fa fa-search"></i></button>
 														</form>	
 													</div>
 												</div>
@@ -81,8 +81,8 @@
 							
 				<div class="page_menu_search menu_mm">
 					<form action="#">
-						<input type="text" class="search_input" placeholder="Search" required="required">
-						<button class="search_button" style="background-color:transparent; border-color:transparent;"><i class="fa fa-search"></i></button>
+						<input id='search-manga' type="text" class="search_input" placeholder="Search" required="required" label='search-manga' aria-label='search-manga'>
+						<button class="search_button" style="background-color:transparent; border-color:transparent;" aria-label="search-button"><i class="fa fa-search"></i></button>
 					</form>	
 				</div>
 				<ul class="page_menu_nav menu_mm">
@@ -90,7 +90,6 @@
 						<a href="index.html">Home<i class="fa fa-angle-down"></i></a>
 						<ul class="page_menu_selection menu_mm">
 							<li class="page_menu_item menu_mm"><a href="#">Latest Release<i class="fa fa-angle-down"></i></a></li>
-							<li class="page_menu_item menu_mm"><a href="#">Login<i class="fa fa-angle-down"></i></a></li>
 						</ul>
 					</li>
 				</ul>
@@ -101,10 +100,10 @@
 
 		<div class="menu_social">
 			<ul>
-				<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.pinterest.com/" aria-label='pinterest'><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.instagram.com/" aria-label='instagram'><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.facebook.com/" aria-label='facebook'><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.twitter.com/" aria-label='twitter'><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 			</ul>
 		</div>
 	</div>
@@ -137,28 +136,29 @@
 		
 	</div>
 	<div class="col-md text-center"> 
-		<button class="btn btn-info loadmore"  onclick='showManga(7)'>Load More</button> 
+		<button class="btn btn-info loadmore" onclick='showManga(7)' aria-label="load-more">Load More</button> 
 	</div>
 
 
 	<!-- Footer -->
 	
 	<footer class="footer">
-		<div class="footer_background" style="background-image:url(images/footer.jpg)"></div>
+		<!-- <div class="footer_background" style="background-image:url(images/footer.jpg)"></div> -->
+		<div class="footer_background"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-						<div class="footer_logo"><a href="#">MangaHeaven.</a></div>
+						<div class="footer_logo"><a href="https://mangaeden.com">MangaEden.</a></div>
 						<div class="copyright ml-auto mr-auto">
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </a>
 </div>
 						<div class="footer_social ml-lg-auto">
 							<ul>
-								<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.pinterest.com/" aria-label='pinterest'><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.instagram.com/" aria-label='instagram'><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.facebook.com/" aria-label='facebook'><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.twitter.com/" aria-label='twitter'><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -181,7 +181,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
+<!-- <script src="plugins/parallax-js-master/parallax.min.js"></script> -->
 <script src="js/custom.js"></script>
 </body>
 </html>
