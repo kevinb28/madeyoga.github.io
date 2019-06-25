@@ -1,8 +1,14 @@
 const STATIC_ASSETS = [ 
 	'./',
-	'./css/desktop.css',
-	'./css/smartphone.css',
-	'./offline.html', 
+	
+	'./detail.html',
+	'./js/detail-main.js',
+
+	'./read.html',
+	'./js/read.js',
+
+	'./latest-updates.html',
+	'./js/latest-updates.js'
 ];
 
 const STATIC_CACHE_NAME = 'manga-static';
@@ -17,6 +23,7 @@ self.addEventListener('fetch', evt => {
 	const req = evt.request;
 	const url = new URL(req.url);
 
+	// check where to fetch. from our own cache or network.
 	if (url.origin == location.origin) {
 		evt.respondWith(cacheFirst(req));
 	} else {
@@ -38,7 +45,8 @@ async function networkFirst(req) {
 		return res;
 	} catch(error) {
         // look something on cache. 
-		return await cache.match(req);
+		const cachedResponse = await cache.match(req);
+		return cachedResponse;
 	}
 }
 
@@ -54,4 +62,3 @@ self.addEventListener('activate', (evt) => {
 	    })
 	); 
 });
-
