@@ -128,7 +128,7 @@ function displayOnCard(manga, number = 7) {
     if (manga.im) {
         setTimeout( function(){
         	img.src = __BASE_IMG_URL__ + manga.im;
-        }, 50 * number);
+        }, 350 * number);
     } else {
         img.src = "https://cdn.mangaeden.com/images/no_image.svg";
     }
