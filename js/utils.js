@@ -116,7 +116,7 @@ function loadMangaElement(list_element, number) {
 function displayOnCard(manga, number = 7) {
     var div_child   = document.createElement('div');
     div_child.onclick = () => {
-        location.href = './detail.html?mangaid=' + manga.i;
+        location.href = './detail.php?mangaid=' + manga.i;
     };
     // child contains: 
     let img         = document.createElement('img');
